@@ -36,7 +36,7 @@ import java.awt.event.KeyEvent;
 
 public class Gui {
 
-	private JFrame frmZephyrTcUplo;
+	private JFrame mainFrame;
 	private JTextField textField;
 	private JTextField textField_1;
 	private JTable table_1;
@@ -51,7 +51,7 @@ public class Gui {
 			public void run() {
 				try {
 					Gui window = new Gui();
-					window.frmZephyrTcUplo.setVisible(true);
+					window.mainFrame.setVisible(true);
 				} catch (Exception e) {
 					e.printStackTrace();
 				}
@@ -70,12 +70,12 @@ public class Gui {
 	 * Initialize the contents of the frame.
 	 */
 	private void initialize() {
-		frmZephyrTcUplo = new JFrame();
-		frmZephyrTcUplo.setTitle("TC Uploader");
-		frmZephyrTcUplo.setResizable(false);
-		frmZephyrTcUplo.setBounds(100, 100, 879, 730);
-		frmZephyrTcUplo.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
-		frmZephyrTcUplo.getContentPane().setLayout(null);
+		mainFrame = new JFrame();
+		mainFrame.setTitle("TC Uploader");
+		mainFrame.setResizable(false);
+		mainFrame.setBounds(100, 100, 879, 730);
+		mainFrame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+		mainFrame.getContentPane().setLayout(null);
 		
 		//Status console
 		textPane = new JTextPane();
@@ -83,12 +83,12 @@ public class Gui {
 		textPane.setBackground(SystemColor.menu);
 		textPane.setEditable(false);
 		textPane.setBounds(15, 572, 842, 86);
-		frmZephyrTcUplo.getContentPane().add(textPane);
+		mainFrame.getContentPane().add(textPane);
 		
 		//Mapping
 		JTabbedPane tabbedPane = new JTabbedPane(JTabbedPane.TOP);
 		tabbedPane.setBounds(15, 0, 842, 571);
-		frmZephyrTcUplo.getContentPane().add(tabbedPane);
+		mainFrame.getContentPane().add(tabbedPane);
 		
 		JPanel panel = new JPanel();
 		panel.setBorder(new LineBorder(new Color(0, 0, 0)));
@@ -159,7 +159,7 @@ public class Gui {
 		JButton btnGetMetaData = new JButton("Get META Data");
 		btnGetMetaData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				JOptionPane.showInputDialog(frmZephyrTcUplo, "Project Key:", "E.g. LUIGI");
+				JOptionPane.showInputDialog(mainFrame, "Project Key:", "E.g. LUIGI");
 			}
 		});
 		btnGetMetaData.setBounds(375, 493, 145, 29);
@@ -299,7 +299,7 @@ public class Gui {
 			
 			
 		}catch (FileNotFoundException e) {
-			JOptionPane.showMessageDialog(frmZephyrTcUplo, fileName + " NOT Found", "Error", JOptionPane.ERROR_MESSAGE);
+			JOptionPane.showMessageDialog(mainFrame, fileName + " NOT Found", "Error", JOptionPane.ERROR_MESSAGE);
 		}
 		return data;
 	}
@@ -323,7 +323,7 @@ public class Gui {
 	
 	private String Browse() {
 		JFileChooser jc = new JFileChooser(FileSystemView.getFileSystemView().getHomeDirectory());
-		jc.showOpenDialog(frmZephyrTcUplo);
+		jc.showOpenDialog(mainFrame);
 		return jc.getSelectedFile().getAbsolutePath();
 	}
 	
@@ -342,6 +342,6 @@ public class Gui {
 	}
 	
 	private void throwErrorMessage(String message) {
-		JOptionPane.showMessageDialog(frmZephyrTcUplo, message, "Error!", JOptionPane.ERROR_MESSAGE);
+		JOptionPane.showMessageDialog(mainFrame, message, "Error!", JOptionPane.ERROR_MESSAGE);
 	}
 }
