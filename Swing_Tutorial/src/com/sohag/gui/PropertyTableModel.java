@@ -9,6 +9,7 @@ public class PropertyTableModel extends DefaultTableModel {
 	private static final String [] headers = {"Property","Value", "To be used"};
 		
 	
+	@SuppressWarnings("rawtypes")
 	Class[] columnTypes = new Class[] {
 			Object.class, Object.class, Boolean.class
 	};
@@ -36,6 +37,7 @@ public class PropertyTableModel extends DefaultTableModel {
 		data = new Object[rowCount][colCount];
 		for(int r=0; r<rowCount; r++) {
 			for(int c=0; c<colCount; c++) {
+				@SuppressWarnings("rawtypes")
 				Class ct = columnTypes[c];
 				data[r][c] = ct.cast(super.getValueAt(r, c));
 			}
@@ -44,6 +46,7 @@ public class PropertyTableModel extends DefaultTableModel {
 		return data;
 	}
 	
+	@SuppressWarnings({ "unchecked", "rawtypes" })
 	public Class getColumnClass(int columnIndex) {
 		return columnTypes[columnIndex];
 	}

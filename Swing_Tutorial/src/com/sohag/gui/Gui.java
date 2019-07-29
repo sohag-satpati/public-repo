@@ -11,13 +11,10 @@ import javax.swing.JOptionPane;
 
 import java.awt.event.ActionListener;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileNotFoundException;
-import java.io.InputStream;
 import java.io.PrintWriter;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Properties;
 import java.util.Scanner;
 import java.awt.event.ActionEvent;
 import javax.swing.JTabbedPane;
@@ -25,9 +22,7 @@ import javax.swing.JTextPane;
 import javax.swing.JPanel;
 import javax.swing.JTable;
 import javax.swing.JRadioButton;
-import javax.swing.event.ChangeListener;
 import javax.swing.filechooser.FileSystemView;
-import javax.swing.event.ChangeEvent;
 import javax.swing.border.LineBorder;
 
 import java.awt.BorderLayout;
@@ -36,9 +31,6 @@ import org.eclipse.wb.swing.FocusTraversalOnArray;
 import java.awt.Component;
 import java.awt.SystemColor;
 import java.awt.Font;
-import javax.swing.JScrollPane;
-import javax.swing.BoxLayout;
-import javax.swing.table.DefaultTableModel;
 import java.awt.event.KeyAdapter;
 import java.awt.event.KeyEvent;
 
@@ -47,7 +39,6 @@ public class Gui {
 	private JFrame frmZephyrTcUplo;
 	private JTextField textField;
 	private JTextField textField_1;
-	private JTable table;
 	private JTable table_1;
 	private JTextPane textPane;
 
@@ -78,7 +69,6 @@ public class Gui {
 	/**
 	 * Initialize the contents of the frame.
 	 */
-	@SuppressWarnings("serial")
 	private void initialize() {
 		frmZephyrTcUplo = new JFrame();
 		frmZephyrTcUplo.setTitle("TC Uploader");
@@ -112,6 +102,7 @@ public class Gui {
 		
 		textField = new JTextField();
 		textField.addKeyListener(new KeyAdapter() {
+			@SuppressWarnings("static-access")
 			@Override
 			public void keyReleased(KeyEvent e) {
 				if(e.getKeyCode() == e.VK_ENTER) {
@@ -168,8 +159,7 @@ public class Gui {
 		JButton btnGetMetaData = new JButton("Get META Data");
 		btnGetMetaData.addActionListener(new ActionListener() {
 			public void actionPerformed(ActionEvent e) {
-				// Call to getmetadata
-				String projectKey = JOptionPane.showInputDialog(frmZephyrTcUplo, "Project Key:", "E.g. LUIGI");
+				JOptionPane.showInputDialog(frmZephyrTcUplo, "Project Key:", "E.g. LUIGI");
 			}
 		});
 		btnGetMetaData.setBounds(375, 493, 145, 29);
@@ -284,7 +274,6 @@ public class Gui {
 		List<Object[]> listOfObjects = new ArrayList<Object[]>();
 		try {
 			Scanner scan = new Scanner(new File(fileName));
-			int rowIndex = -1;
 			while(scan.hasNext()) {
 				String line = scan.nextLine();
 				boolean toBeUsed = true;
